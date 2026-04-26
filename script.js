@@ -1,34 +1,35 @@
-const btn = document.getElementById("btn");
+function pegarValores() {
+  return {
+    n1: Number(document.getElementById("n1").value),
+    n2: Number(document.getElementById("n2").value)
+  };
+}
 
-// ouvir clique
-btn.addEventListener("click", () => {
+function mostrarResultado(valor) {
+  const div = document.getElementById("saida");
+  div.innerHTML = `<p class="resultado">Resultado: ${valor}</p>`;
+}
 
-  // pegar valores
-  const n1 = Number(document.getElementById("n1").value);
-  const n2 = Number(document.getElementById("n2").value);
+function somar() {
+  const { n1, n2 } = pegarValores();
+  mostrarResultado(n1 + n2);
+}
 
-  // fazer conta
-  const resultado = n1 + n2;
+function subtrair() {
+  const { n1, n2 } = pegarValores();
+  mostrarResultado(n1 - n2);
+}
 
-  // criar elemento
-  const p = document.createElement("p");
+function multiplicar() {
+  const { n1, n2 } = pegarValores();
+  mostrarResultado(n1 * n2);
+}
 
-  // escrever resultado
-  p.textContent = "Resultado: " + resultado;
-
-  // adicionar classe
-  p.classList.add("resultado");
-
-  const saida = document.getElementById("saida");
-
-  // limpar antes
-  saida.innerHTML = "";
-
-  // adicionar no HTML
-  saida.appendChild(p);
-
-  // remover classe depois
-  setTimeout(() => {
-    p.classList.remove("resultado");
-  }, 2000);
-});
+function dividir() {
+  const { n1, n2 } = pegarValores();
+  if (n2 === 0) {
+    mostrarResultado("Erro: divisão por zero");
+    return;
+  }
+  mostrarResultado(n1 / n2);
+}
